@@ -8,6 +8,9 @@ class Event(models.Model):
     description = models.TextField()
     participants_allowed = models.PositiveIntegerField()
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class EventParticipant(models.Model):
     first_name = models.CharField(max_length=255)
@@ -17,3 +20,6 @@ class EventParticipant(models.Model):
     phone_number = models.CharField(max_length=20)
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.first_name + " " + self.last_name
